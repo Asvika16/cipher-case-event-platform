@@ -25,7 +25,7 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Cipher Case Server Running', timestamp: new Date() });
 });
 
-// Serve frontend in production if built
+// Serve frontend in production if built locally
 const clientDist = path.join(__dirname, '../client/dist');
 app.use(express.static(clientDist));
 app.get('*', (req, res) => {
@@ -34,15 +34,19 @@ app.get('*', (req, res) => {
   }
   res.sendFile(path.join(clientDist, 'index.html'), (err) => {
     if (err) {
-      res.status(200).send('Cipher Case API Running. Frontend is running via Vite on dev port.');
+      res.status(200).send('Cipher Case API Running.');
     }
   });
 });
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(` CIPHER CASE SERVER RUNNING ON PORT ${PORT}`);
-  console.log(`====================================================`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`====================================================`);
+    console.log(` CIPHER CASE SERVER RUNNING ON PORT ${PORT}`);
+    console.log(`====================================================`);
+  });
+}
+
+module.exports = app;

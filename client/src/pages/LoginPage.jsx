@@ -49,6 +49,11 @@ const LoginPage = () => {
         body: JSON.stringify({ teamId: targetId, password })
       });
 
+      const contentType = res.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error(`Server API Error (${res.status}): Non-JSON response returned. Please verify Vercel /api rewrites & MONGO_URI in environment variables.`);
+      }
+
       const data = await res.json();
 
       if (!res.ok) {
