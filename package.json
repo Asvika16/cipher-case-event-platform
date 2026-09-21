@@ -1,0 +1,20 @@
+{
+  "name": "cipher-case",
+  "version": "1.0.0",
+  "description": "CIPHER CASE - THE MYSTERY HUNT Full-Stack Web Application",
+  "main": "server/index.js",
+  "scripts": {
+    "postinstall": "npm run install:all",
+    "install:all": "npm install --prefix server && npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "seed": "node server/seed.js",
+    "build": "npm run build --prefix client",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5"
+  }
+}

@@ -1,0 +1,21 @@
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+*.db
+*.sqlite3
+
+# Node dependencies
+node_modules/
+dist/
+.vite/
+
+# Local environment
+.env
+.env.local
+
+# OS generated
+.DS_Store
+Thumbs.db
